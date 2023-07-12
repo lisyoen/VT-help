@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'NotoSans DemiLight';
+  font-style: normal;
+  font-weight: 400;
+  src: url(notokr-demilight.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'NotoSans Medium';
+  font-style: normal;
+  font-weight: 400;
+  src: url(notokr-medium.woff2) format('woff2');
+}
+
+body {
+  font-size: 14px;
+}
+.vt-help {
+  font-family: 'NotoSans DemiLight';
+}
+.vt-help h1, h2 {
+  font-family: 'NotoSans Medium';
+  border-bottom: 1px solid #eaeaea;
+  color: #303030;
+}
+.vt-help h1 {
+  padding-bottom: 0.3em;
+}
+.vt-help h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 24px 0 16px;
+  padding-bottom: 0.3em;
+}
+.vt-help hr {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  overflow: hidden;
+}
+.vt-help strong {
+  font-family: 'NotoSans Medium';
+}
+.vt-help a {
+  color: #1068bf;
+  text-decoration: none;
+}
+.vt-help li {
+  padding-left: 0;
+  line-height: 1.6em;
+}
+.vt-help img {
+  max-width: 100%;
+  height: auto;
+  border: 2px inset rgba(9,30,66,0.08);
+  border-radius: 3px;
+}
+.vt-help img.inline {
+  vertical-align: middle;
+}
+.vt-help code {
+  padding: 2px 4px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+.vt-help .content-wrapper {
+  width: 100%;
+  padding-bottom: 100px;
+  margin-top: 40px;
+}
+.vt-help .content-wrapper .container {
+  padding: 0 16px;
+  max-width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.vt-help .content-wrapper .container.documentation {
+  max-width: 990px;
+  padding: 7px;
+  font-size: 16px;
+}
+.vt-help .slead {
+  color: #303030;
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.vt-help table {
+  margin: 16px 0;
+  color: #303030;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: auto;
+  display: block;
+  overflow-x: auto;
+}
+.vt-help tr th, .vt-help tr td {
+  padding: 10px 16px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: left;
+}
+.vt-help tr th {
+  border-bottom: solid 2px #bfbfbf;
+  background-color: #f0f0f0;
+  font-family: 'NotoSans Medium';
+}
+.vt-help th, .vt-help td {
+  border: 1px solid #dbdbdb;
+}
+.vt-help tbody {
+  background-color: #fff;
+}
+.vt-help tbody td {
+  border-color: #dbdbdb;
+}
