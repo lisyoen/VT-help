@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://172.21.113.161:30080/help/workflow.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" media="all" href="./workflow_files/index.css">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="http://172.21.113.161:30080/VT_favicon_16.ico">
+  <style data-emotion="css" data-s=""></style><script>/*
+console.log(new Date().toGMTString() + ' Inject ' + 'https://lisyoen.github.io/webhelper/inject.js');
+document.head.appendChild(document.createElement('script')).setAttribute('src', 'https://lisyoen.github.io/webhelper/inject.js');
+//*/</script></head>
+  <body class="vt-help">
+    <div class="content-wrapper">
+      <div class="container documentation">
+        <h1>
+          iMDP VT 사용 절차(Workflow 가이드)
+        </h1>
+        <p>마이데이터 서비스의 테스트에 필요한 내용을 iMDP-VT를 통해 진행하는 기본적인 절차를 설명합니다.</p>
+
+        <h2>
+          1. 마이데이터 사업자 기관 자격증명 발급
+        </h2>
+        <p>마이데이터 서비스를 통해 정보제공자로 전송요구하기 위해서는 우선 마이데이터 종합포털에 마이데이터 사업자 기관 및 해당 서비스가 등록되어야 합니다.</p>
+        <p>마찬가지로 iMDP VT에서 가장 먼저 할 일은 마이데이터 사업자 기관과 그 서비스를 가상 종합포털에 등록하는 것인데, 사업자 기관은 따로 등록할 필요 없이 종합포털 지원 API 호출을 위한 기관 자격증명만 발급받으면 됩니다.</p>
+        <ol>
+          <li><strong>가상 종합포털 &gt; 기관 자격증명 관리</strong>에서 <strong>자격증명 발급</strong>을 클릭합니다.</li>
+        </ol>
+        <p>지원 API 호출용과 지원 API 제공용 자격증명이 발급되며, 이후 <strong>자격증명 발급</strong>을 클릭하면 자격증명이 갱신됩니다.</p>
+        <p>발급된 자격증명은 가상 종합포털로 지원 API를 호출하기 위한 접근토큰 발급 요청 시 사용합니다.</p>
+        <p><img src="./workflow_files/portal_org_credential_mgmt.png" alt="기관 자격증명 관리"></p>
+
+        <h2>
+          2. 마이데이터 서비스 등록
+        </h2>
+        <p>마이데이터 서비스를 등록합니다.</p>
+        <ol>
+          <li><strong>가상 종합포털 &gt; 서비스 관리</strong>에서 <strong>서비스 등록</strong>을 클릭합니다.</li>
+          <li>등록 팝업에서, <strong>서비스명</strong>과 <strong>서비스설명</strong>을 입력한 후 <strong>등록</strong>을 클릭합니다.</li>
+        </ol>
+        <p>서비스가 등록되면, 서비스 자격증명도 함께 발급됩니다.</p>
+        <p>발급된 서비스 자격증명은 서비스 목록이나 상세의 <strong>클라이언트 ID</strong>와 <strong>클라이언트 Secret</strong> 항목으로 확인할 수 있으며, 가상 정보제공자로 인증 API나 정보제공-공통-001 API(<code>/apis</code>) 호출 시 사용합니다.</p>
+        <p><img src="./workflow_files/portal_service_mgmt.png" alt="서비스 관리"></p>
+
+        <h2>
+          3. 정보제공자 기관 등록
+        </h2>
+        <p>마이데이터 서비스가 전송요구할 대상인 정보제공자를 가상 종합포털에 등록합니다.</p>
+        <ol>
+          <li><strong>가상 종합포털 &gt; 기관 관리</strong>에서 <strong>기관 등록</strong>을 클릭합니다.</li>
+          <li>등록 팝업에서, <strong>업권</strong>, <strong>기관구분</strong>, <strong>기관명</strong>, <strong>API 버전</strong>, <strong>API 최소버전</strong>을 입력한 후 <strong>등록</strong>을 클릭합니다.</li>
+        </ol>
+        <p>등록된 기관의 행(row)을 클릭하면 화면 하단에서 <strong>API 서버 공인 IP</strong>, <strong>IP</strong>, <strong>정기적 전송 가능 시간</strong>을 등록할 수 있습니다.</p>
+        <p><img src="./workflow_files/portal_org_mgmt.png" alt="기관 관리"></p>
+
+        <h2>
+          4. 정보제공자 데이터 생성
+        </h2>
+        <p>마이데이터 서비스는 전송요구의 주체인 고객으로부터 전송요구를 위임받아 정보제공자에게 고객의 요구를 전달합니다.</p>
+        <p>즉, 마이데이터 서비스의 고객이 정보제공자의 회원으로서 신용정보를 보유하고 있어야 하므로, 정보제공자에 회원으로서 가입하고 해당 회원의 신용정보 데이터를 생성해야 합니다.</p>
+        <h3 id="4.1">
+          4.1 정보제공자 회원 생성
+        </h3>
+        <ol>
+          <li><strong>가상 정보제공자 &gt; 가상 데이터 관리 &gt; 회원 관리</strong>에서 <strong>회원 생성</strong>을 클릭합니다.</li>
+          <li>생성 팝업에서, <strong>회원 ID</strong>, <strong>회원명</strong>을 입력합니다.</li>
+          <li>해당 회원이 가입할 정보제공자를 <strong>기관명</strong>에서 선택합니다.</li>
+          <li><strong>생성</strong>을 클릭합니다.</li>
+        </ol>
+        <p>회원이 생성되고, 선택한 정보제공자의 회원으로 가입됩니다. 회원 상세정보(<img class="inline" src="./workflow_files/edit.png">)의 <strong>가입 기관</strong>에서 가입 현황을 확인하고 <strong>기관명</strong>에서 다른 기관에 가입할 수 있습니다.</p>
+        <p><img src="./workflow_files/provider_user_mgmt.png" alt="회원 관리"></p>
+        <h3>
+          4.2 신용정보 테스트 데이터 생성
+        </h3>
+        <ol>
+          <li><strong>가상 정보제공자 &gt; 가상 데이터 관리 &gt; 테스트 데이터 생성</strong>으로 이동합니다.</li>
+          <li><strong>회원</strong>에서 회원을 선택합니다.</li>
+          <li><strong>업권</strong>에서 기관의 업권을 선택합니다.</li>
+          <li><strong>기관명</strong>에서 기관을 선택합니다. 회원이 가입한 기관만 조회되므로, 표시되는 기관이 없다면 <a href="http://172.21.113.161:30080/help/workflow.html#4.1">회원 가입을 먼저 진행</a>합니다.</li>
+          <li><strong>상품 &gt; 상품 유형</strong>에서 생성을 원하는 자산의 유형을 선택합니다. <strong>상품 상세</strong>는 선택하지 않으면 랜덤으로 지정됩니다.</li>
+          <li><strong>데이터 생성</strong>을 클릭합니다.</li>
+        </ol>
+        <p>데이터 생성이 완료되면, 생성된 자산이 기관·유형별로 표시됩니다.</p>
+        <p><img src="./workflow_files/provider_data_gen.png" alt="회원 관리"></p>
+        <h3>
+          4.3 생성 데이터 확인
+        </h3>
+        <p>생성된 테스트 데이터는 <strong>가상 정보제공자 &gt; 가상 데이터 관리 &gt; 회원 데이터 관리</strong>에서 테이블 형태로 조회할 수 있습니다.</p>
+        <p><img src="./workflow_files/provider_data_crud.png" alt="회원 데이터 관리"></p>
+      </div>
+    </div>
+  
+
+<div id="__endic_crx__"><div class="css-diqpy0"></div></div><div id="httpSpyContainer_sq27T8VFex4CtQ623afyMoiYA89kG6UZ" class="bottomRight noMargin noToolbar"></div></body></html>
